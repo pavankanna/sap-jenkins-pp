@@ -2,7 +2,7 @@ pipeline {
     stages {
         stage('Running stage against  master branch') {
             when {
-                branch 'development' 
+                branch 'master' 
             }
             steps {
                 docker run -it httpd
@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Running stage against Intergration branch') {
             when {
-                branch 'production'  
+                branch 'Intergration'  
             }
             steps {
                 docker build -t pipeline/httpd .
