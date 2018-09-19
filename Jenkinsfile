@@ -6,7 +6,7 @@ pipeline {
                 branch 'master' 
             }
             steps {
-                docker run -d -p 8080:8080 pipeline/httpd
+                docker run -d -p 8080 pipeline/httpd
             }
 	   steps {
 		docker ps  | grep -v grep | grep httpd	
@@ -26,8 +26,8 @@ pipeline {
             }
             steps {
                 docker build -t pipeline/httpd .
-		docker run -d -p 8080:8080 pipeline/httpd
-		docker ps  | grep -v grep | grep httpd
+		docker run -d -p 8080 pipeline/httpd
+		//docker ps  | grep -v grep | grep httpd
             }
         }
 
