@@ -1,4 +1,5 @@
 pipeline {
+    node('master') {
     stages {
         stage('Running stage against  master branch') {
             when {
@@ -31,4 +32,5 @@ pipeline {
         }
 
     }
+  }
 }
