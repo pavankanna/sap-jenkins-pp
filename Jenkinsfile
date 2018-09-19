@@ -1,36 +1,35 @@
 pipeline {
-    node('master') {
+    agent any
     stages {
-        stage('Running stage against  master branch') {
+        stage('Build against master branch') {
             when {
-                branch 'master' 
+                branch 'master'
             }
             steps {
-                docker run -d -p 8080 pipeline/httpd
-            }
-	   steps {
-		docker ps  | grep -v grep | grep httpd	
-	   }
-        }
-        stage('Running stage against Intergration branch') {
-            when {
-                branch 'Intergration'  
-            }
-            steps {
-                docker build -t pipeline/httpd .
+                echo 'Hello World'
+                sh ''' docker run -d -p 8080 pipeline/httpd '''
             }
         }
-	 stage('Running stage against Pull Request branch') {
+        stage('Build against feature branch') {
             when {
                 branch 'PullRequest'
             }
             steps {
-                docker build -t pipeline/httpd .
-		docker run -d -p 8080 pipeline/httpd
-		//docker ps  | grep -v grep | grep httpd
+                echo 'Deploying'
+                sh ''' docker build -t pipeline/httpd . '''
+				sh ''' docker run -d -p 8080 pipeline/httpd '''
+				sh ''' docker ps  | grep -v grep | grep httpd '''
             }
         }
-
+		stage('Build against feature branch') {
+            when {
+                branch 'Intergration'
+            }
+            steps {
+                echo 'Deploying'
+                sh ''' docker build -t pipeline/httpd . '''
+            }
+        }
     }
-  }
 }
+
