@@ -7,7 +7,7 @@ pipeline {
             }
             steps {
                 echo 'Hello World'
-                docker ps
+                sh '''docker ps '''
             }
         }
         stage('Build against feature branch') {
@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
                 echo 'Deploying'
-                docker ps
+                sh ''' docker ps '''
             }
         }
     }
