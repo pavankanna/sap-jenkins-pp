@@ -1,4 +1,4 @@
-FROM centos7:latest
+FROM centos:7
 MAINTAINER Pavan Kumar Akula (pavan.akula.27@gmail.com)
 RUN yum -y --setopt=tsflags=nodocs update && \
     yum -y --setopt=tsflags=nodocs install httpd && \
