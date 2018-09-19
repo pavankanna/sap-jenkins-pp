@@ -10,7 +10,7 @@ pipeline {
                 sh ''' docker run -d -p 8080 pipeline/httpd '''
             }
         }
-        stage('Build against feature branch') {
+        stage('Build against PullRequest branch') {
             when {
                 branch 'PullRequest'
             }
@@ -21,7 +21,7 @@ pipeline {
 				sh ''' docker ps  | grep -v grep | grep httpd '''
             }
         }
-		stage('Build against feature branch') {
+		stage('Build against Intergration branch') {
             when {
                 branch 'Intergration'
             }
