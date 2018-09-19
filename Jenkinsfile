@@ -7,6 +7,7 @@ pipeline {
             }
             steps {
                 echo 'Hello World'
+                docker ps
             }
         }
         stage('Build against feature branch') {
