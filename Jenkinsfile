@@ -20,9 +20,9 @@ pipeline {
                 docker build -t pipeline/httpd .
             }
         }
-	 stage('Running stage against Intergration branch') {
+	 stage('Running stage against Pull Request branch') {
             when {
-                branch 'Pull Request'
+                branch 'PullRequest'
             }
             steps {
                 docker build -t pipeline/httpd .
