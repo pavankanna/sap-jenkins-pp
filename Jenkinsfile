@@ -9,7 +9,8 @@ pipeline {
                 docker run -d -p 8080 pipeline/httpd
             }
 	   steps {
-		docker ps  | grep -v grep | grep httpd	
+		 echo "Testing Stage"
+		//docker ps  | grep -v grep | grep httpd	
 	   }
         }
         stage('Running stage against Intergration branch') {
